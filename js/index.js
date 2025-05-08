@@ -19,6 +19,4 @@ const initApp = () => {
   updateRecipesList(recipesList, recipes);
 };
 
-// Initialisation de l'application au chargement du DOM
-
-document.addEventListener("DOMContentLoaded", initApp);
+initApp();
