@@ -3,20 +3,15 @@ import {
   updateRecipesList,
 } from "./templates/recipeList.js";
 import { recipes } from "./recipes.js";
+import { initializeSearch } from "./search.js";
 
-// Fonction principale d'initialisation de l'application
-const initApp = () => {
-  // Création du conteneur de recettes
-  const recipesList = createRecipesContainer();
+// Créer le conteneur des recettes
+const main = document.querySelector("main");
+const recipesContainer = createRecipesContainer();
+main.appendChild(recipesContainer);
 
-  // Ajout du conteneur au DOM
-  const main = document.querySelector("main");
-  if (main) {
-    main.appendChild(recipesList);
-  }
+// Afficher toutes les recettes au chargement
+updateRecipesList(recipesContainer, recipes);
 
-  // Affichage initial des recettes
-  updateRecipesList(recipesList, recipes);
-};
-
-initApp();
+// Initialiser la recherche
+initializeSearch();
