@@ -1,0 +1,71 @@
+FICHE D'INVESTIGATION DE FONCTIONNALITÉ
+=====================================
+
+FONCTIONNALITÉ : MOTEUR DE RECHERCHE DE RECETTES
+----------------------------------------------
+
+1. DESCRIPTION DE LA FONCTIONNALITÉ
+----------------------------------
+La fonctionnalité permet aux utilisateurs de rechercher des recettes en temps réel à partir d'un champ de recherche principal. La recherche doit être performante et quasi-instantanée.
+
+2. IMPLÉMENTATIONS PROPOSÉES
+---------------------------
+
+A. IMPLÉMENTATION 1 : APPROCHE IMPÉRATIVE
+----------------------------------------
+- Utilisation de boucles natives (while, for...)
+- Recherche séquentielle dans le tableau de recettes
+- Filtrage manuel des résultats
+- Complexité temporelle : O(n)
+
+B. IMPLÉMENTATION 2 : APPROCHE FONCTIONNELLE
+-------------------------------------------
+- Utilisation des méthodes de l'objet Array (filter, map, reduce)
+- Recherche basée sur des fonctions de filtrage
+- Transformation des données avec map
+- Complexité temporelle : O(n)
+
+3. ALGORITHMES
+-------------
+
+A. IMPLÉMENTATION 1 (IMPÉRATIVE)
+-------------------------------
+1. Récupération de la valeur du champ de recherche
+2. Initialisation d'un tableau de résultats vide
+3. Parcours du tableau de recettes avec une boucle for
+4. Pour chaque recette :
+   - Vérification du nom
+   - Vérification des ingrédients
+   - Vérification de la description
+   - Si correspondance trouvée, ajout au tableau de résultats
+5. Affichage des résultats
+
+B. IMPLÉMENTATION 2 (FONCTIONNELLE)
+----------------------------------
+1. Récupération de la valeur du champ de recherche
+2. Utilisation de filter pour créer un tableau de recettes correspondantes
+3. Utilisation de map pour formater les résultats
+4. Affichage des résultats
+
+4. TESTS DE PERFORMANCE
+----------------------
+[À compléter après les tests avec Jsben.ch]
+
+5. RECOMMANDATION
+----------------
+[À compléter après l'analyse des performances]
+
+6. CONSIDÉRATIONS SUPPLÉMENTAIRES
+--------------------------------
+- Sécurité : Protection contre les injections HTML
+- Maintenabilité : Code modulaire et documenté
+- Évolutivité : Facilité d'ajout de nouvelles fonctionnalités
+- Compatibilité : Support des navigateurs modernes
+
+7. DOCUMENTATION TECHNIQUE
+-------------------------
+[À compléter avec les détails d'implémentation]
+
+8. NOTES POUR L'ÉQUIPE BACK-END
+------------------------------
+[À compléter avec les recommandations pour l'adaptation]

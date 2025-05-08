@@ -1,0 +1,115 @@
+.recipes-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem;
+  padding: 10rem 0rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.recipe-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  position: relative;
+}
+
+.recipe-image {
+  width: 100%;
+  height: 253px;
+  object-fit: cover;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  display: block;
+}
+
+.recipe-time {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: #ffd15b;
+  color: #1b1b1b;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-weight: 400;
+  font-family: Manrope;
+  font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  z-index: 2;
+}
+
+.recipe-content {
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.recipe-title {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  color: #1b1b1b;
+  font-family: Anton;
+}
+
+.recipe-section {
+  margin-bottom: 0.7rem;
+}
+
+.recipe-section h3 {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: Manrope;
+  color: #7a7a7a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.recipe-description {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: Manrope;
+  color: #1b1b1b;
+  line-height: 1.5;
+}
+
+.ingredients-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem 1.5rem;
+}
+
+.ingredient-item {
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.2rem;
+}
+
+.ingredient-name {
+  font-size: 14px;
+  font-weight: 500;
+  font-family: Manrope;
+  color: #1b1b1b;
+}
+
+.ingredient-quantity {
+  color: #7a7a7a;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: Manrope;
+}
+
+.no-results {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--dark-grey);
+  padding: 2rem;
+}
