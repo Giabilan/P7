@@ -5,23 +5,6 @@ export function createRecipesContainer() {
   container.className = "recipes-container";
   container.id = "recipes-list";
 
-  // Créer la div parent pour les tags et le compteur
-  const headerContainer = document.createElement("div");
-  headerContainer.className = "recipes-header";
-
-  // Ajouter le compteur de recettes
-  const recipeCount = document.createElement("div");
-  recipeCount.className = "recipe-count";
-  headerContainer.appendChild(recipeCount);
-
-  // Ajouter le conteneur pour les tags (à implémenter plus tard)
-  const tagsContainer = document.createElement("div");
-  tagsContainer.className = "tags-container";
-  headerContainer.appendChild(tagsContainer);
-
-  // Ajouter le header au conteneur principal
-  container.appendChild(headerContainer);
-
   // Créer le conteneur pour les cartes de recettes
   const cardsContainer = document.createElement("div");
   cardsContainer.className = "recipes-cards";
@@ -31,10 +14,6 @@ export function createRecipesContainer() {
 }
 
 export function updateRecipesList(container, recipes) {
-  // Mettre à jour le compteur de recettes
-  const recipeCount = container.querySelector(".recipe-count");
-  recipeCount.textContent = `${recipes.length} recettes`;
-
   // Récupérer le conteneur des cartes
   const cardsContainer = container.querySelector(".recipes-cards");
 

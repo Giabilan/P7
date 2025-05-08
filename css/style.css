@@ -8,6 +8,9 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+
   font-family: "Lato", sans-serif;
   color: var(--text-color);
   background: var(--recipeContainer-color);
