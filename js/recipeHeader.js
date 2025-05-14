@@ -20,7 +20,7 @@ export const RecipeHeader = (recipes) => {
         });
       }
     });
-    return Array.from(options).sort();
+    return options;
   };
 
   const getFilteredRecipes = () => {
