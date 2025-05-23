@@ -1,12 +1,7 @@
 import { updateRecipesList } from "./templates/recipeList.js";
+import { recipeService } from "./services/recipeService.js";
 
 export const RecipeHeader = (recipes) => {
-  const selectedTags = {
-    ingredients: [],
-    appliances: [],
-    ustensils: [],
-  };
-
   const getUniqueOptions = (type) => {
     const options = new Set();
     recipes.forEach((recipe) => {
@@ -25,33 +20,10 @@ export const RecipeHeader = (recipes) => {
     return options;
   };
 
-  const getFilteredRecipes = () => {
-    return recipes.filter((recipe) => {
-      const hasIngredients = selectedTags.ingredients.every((tag) =>
-        recipe.ingredients.some(
-          (ingredient) =>
-            ingredient.ingredient.toLowerCase() === tag.toLowerCase()
-        )
-      );
-      const hasAppliance =
-        selectedTags.appliances.length === 0 ||
-        selectedTags.appliances.some(
-          (tag) => recipe.appliance.toLowerCase() === tag.toLowerCase()
-        );
-      const hasUstensils = selectedTags.ustensils.every((tag) =>
-        recipe.ustensils.some(
-          (ustensil) => ustensil.toLowerCase() === tag.toLowerCase()
-        )
-      );
-      return hasIngredients && hasAppliance && hasUstensils;
-    });
-  };
-
   const updateRecipeCount = () => {
+    const filteredRecipes = recipeService.filterRecipes();
     const recipeCount = document.querySelector(".recipe-count");
-    const filteredRecipes = getFilteredRecipes();
     recipeCount.textContent = `${filteredRecipes.length} recettes`;
-    console.log("Tags sélectionnés:", selectedTags);
 
     // Mettre à jour la liste des recettes
     const recipesContainer = document.getElementById("recipes-list");
@@ -61,7 +33,9 @@ export const RecipeHeader = (recipes) => {
   };
 
   const removeTag = (type, value) => {
-    selectedTags[type] = selectedTags[type].filter((tag) => tag !== value);
+    const tags = recipeService.getSelectedTags();
+    tags[type] = tags[type].filter((tag) => tag !== value);
+    recipeService.setSelectedTags(tags);
   };
 
   const createTag = (type, value) => {
@@ -81,8 +55,10 @@ export const RecipeHeader = (recipes) => {
   };
 
   const addTag = (type, value) => {
-    if (!selectedTags[type].includes(value)) {
-      selectedTags[type].push(value);
+    const tags = recipeService.getSelectedTags();
+    if (!tags[type].includes(value.toLowerCase())) {
+      tags[type].push(value.toLowerCase());
+      recipeService.setSelectedTags(tags);
       createTag(type, value);
       updateRecipeCount();
     }
@@ -118,7 +94,6 @@ export const RecipeHeader = (recipes) => {
       dropdownContent.classList.toggle("show");
     });
 
-    // Fermer le dropdown quand on clique ailleurs
     document.addEventListener("click", (e) => {
       if (!dropdownContainer.contains(e.target)) {
         dropdownContent.classList.remove("show");

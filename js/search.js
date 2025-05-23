@@ -1,35 +1,19 @@
-import { recipes } from "./recipes.js";
 import { updateRecipesList } from "./templates/recipeList.js";
+import { recipeService } from "./services/recipeService.js";
 
 export function initializeSearch() {
   const searchInput = document.querySelector(".search-wrapper input");
   const recipesContainer = document.getElementById("recipes-list");
 
   searchInput.addEventListener("input", (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-    const filteredRecipes = filterRecipes(searchTerm);
+    recipeService.setSearchTerm(e.target.value);
+    const filteredRecipes = recipeService.filterRecipes();
     updateRecipesList(recipesContainer, filteredRecipes);
-  });
-}
 
-function filterRecipes(searchTerm) {
-  if (!searchTerm) return recipes;
-
-  return recipes.filter((recipe) => {
-    // Vérifier le titre
-    if (recipe.name.toLowerCase().includes(searchTerm)) return true;
-
-    // Vérifier la description
-    if (recipe.description.toLowerCase().includes(searchTerm)) return true;
-
-    // Vérifier les ingrédients
-    if (
-      recipe.ingredients.some((ingredient) =>
-        ingredient.ingredient.toLowerCase().includes(searchTerm)
-      )
-    )
-      return true;
-
-    return false;
+    // Mettre à jour le compteur de recettes
+    const recipeCount = document.querySelector(".recipe-count");
+    if (recipeCount) {
+      recipeCount.textContent = `${filteredRecipes.length} recettes`;
+    }
   });
 }
