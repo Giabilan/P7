@@ -1,3 +1,5 @@
+import { updateRecipesList } from "./templates/recipeList.js";
+
 export const RecipeHeader = (recipes) => {
   const selectedTags = {
     ingredients: [],
@@ -10,13 +12,13 @@ export const RecipeHeader = (recipes) => {
     recipes.forEach((recipe) => {
       if (type === "ingredients") {
         recipe.ingredients.forEach((ingredient) => {
-          options.add(ingredient.ingredient);
+          options.add(ingredient.ingredient.toLowerCase());
         });
       } else if (type === "appliances") {
-        options.add(recipe.appliance);
+        options.add(recipe.appliance.toLowerCase());
       } else if (type === "ustensils") {
         recipe.ustensils.forEach((ustensil) => {
-          options.add(ustensil);
+          options.add(ustensil.toLowerCase());
         });
       }
     });
@@ -26,13 +28,20 @@ export const RecipeHeader = (recipes) => {
   const getFilteredRecipes = () => {
     return recipes.filter((recipe) => {
       const hasIngredients = selectedTags.ingredients.every((tag) =>
-        recipe.ingredients.some((ingredient) => ingredient.ingredient === tag)
+        recipe.ingredients.some(
+          (ingredient) =>
+            ingredient.ingredient.toLowerCase() === tag.toLowerCase()
+        )
       );
       const hasAppliance =
         selectedTags.appliances.length === 0 ||
-        selectedTags.appliances.includes(recipe.appliance);
+        selectedTags.appliances.some(
+          (tag) => recipe.appliance.toLowerCase() === tag.toLowerCase()
+        );
       const hasUstensils = selectedTags.ustensils.every((tag) =>
-        recipe.ustensils.includes(tag)
+        recipe.ustensils.some(
+          (ustensil) => ustensil.toLowerCase() === tag.toLowerCase()
+        )
       );
       return hasIngredients && hasAppliance && hasUstensils;
     });
@@ -42,6 +51,13 @@ export const RecipeHeader = (recipes) => {
     const recipeCount = document.querySelector(".recipe-count");
     const filteredRecipes = getFilteredRecipes();
     recipeCount.textContent = `${filteredRecipes.length} recettes`;
+    console.log("Tags sélectionnés:", selectedTags);
+
+    // Mettre à jour la liste des recettes
+    const recipesContainer = document.getElementById("recipes-list");
+    if (recipesContainer) {
+      updateRecipesList(recipesContainer, filteredRecipes);
+    }
   };
 
   const removeTag = (type, value) => {
