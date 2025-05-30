@@ -77,6 +77,17 @@ export const RecipeHeader = (recipes) => {
     dropdownContent.className = "dropdown-content";
     dropdownContainer.appendChild(dropdownContent);
 
+    // Ajout de la barre de recherche
+    const searchInput = document.createElement("input");
+    searchInput.type = "text";
+    searchInput.className = "dropdown-search";
+    searchInput.placeholder = "Rechercher...";
+    dropdownContent.appendChild(searchInput);
+
+    const optionsContainer = document.createElement("div");
+    optionsContainer.className = "options-container";
+    dropdownContent.appendChild(optionsContainer);
+
     const options = getUniqueOptions(type);
     options.forEach((option) => {
       const optionElement = document.createElement("div");
@@ -86,7 +97,22 @@ export const RecipeHeader = (recipes) => {
         addTag(type, option);
         dropdownContent.classList.remove("show");
       });
-      dropdownContent.appendChild(optionElement);
+      optionsContainer.appendChild(optionElement);
+    });
+
+    // Ajout de la logique de filtrage
+    searchInput.addEventListener("input", (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      const options = optionsContainer.querySelectorAll(".dropdown-option");
+
+      options.forEach((option) => {
+        const text = option.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+          option.style.display = "block";
+        } else {
+          option.style.display = "none";
+        }
+      });
     });
 
     dropdownButton.addEventListener("click", (e) => {
