@@ -77,12 +77,21 @@ export const RecipeHeader = (recipes) => {
     dropdownContent.className = "dropdown-content";
     dropdownContainer.appendChild(dropdownContent);
 
-    // Ajout de la barre de recherche
+    const searchContainer = document.createElement("div");
+    searchContainer.className = "tags-search-container";
+
     const searchInput = document.createElement("input");
     searchInput.type = "text";
     searchInput.className = "dropdown-search";
-    searchInput.placeholder = "Rechercher...";
-    dropdownContent.appendChild(searchInput);
+
+    const searchIcon = document.createElement("img");
+    searchIcon.className = "tags-search-icon";
+    searchIcon.src = "/assets/images/tags/tags_search.svg"; // adapte le chemin si besoin
+    searchIcon.alt = "Rechercher";
+
+    searchContainer.appendChild(searchInput);
+    searchContainer.appendChild(searchIcon);
+    dropdownContent.appendChild(searchContainer);
 
     const optionsContainer = document.createElement("div");
     optionsContainer.className = "options-container";

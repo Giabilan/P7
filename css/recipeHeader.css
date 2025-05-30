@@ -144,3 +144,32 @@
   color: #333;
   padding: 0.5rem;
 }
+
+.tags-search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.dropdown-search {
+  width: 100%;
+  padding: 8px;
+  padding-right: 35px; /* espace pour l’icône */
+  font-size: 14px;
+  font-weight: 400;
+  border: 1px solid #c6c6c6;
+  outline: none;
+  color: #7A7A7A;
+  box-sizing: border-box;
+}
+
+.tags-search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7A7A7A;
+  width: 14px;
+  height: 14px;
+}
