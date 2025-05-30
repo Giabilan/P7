@@ -61,6 +61,7 @@
 
 .dropdown-content.show {
   display: block;
+  z-index: 50;
 }
 
 .dropdown-option {
@@ -72,7 +73,7 @@
 }
 
 .dropdown-option:hover {
-  background-color: #f1f1f1;
+  background-color: #ffd15b;
 }
 
 .tags-container {
