@@ -13,7 +13,9 @@ export function initializeSearch() {
     // Mettre à jour le compteur de recettes
     const recipeCount = document.querySelector(".recipe-count");
     if (recipeCount) {
-      recipeCount.textContent = `${filteredRecipes.length} recettes`;
+      recipeCount.textContent = `${filteredRecipes.length} recette${
+        filteredRecipes.length > 1 ? "s" : ""
+      }`;
     }
   });
 }
