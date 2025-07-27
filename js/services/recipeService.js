@@ -11,7 +11,7 @@ class RecipeService {
   }
 
   setSearchTerm(term) {
-    this.currentSearchTerm = term.toLowerCase();
+    this.currentSearchTerm = term.toLowerCase().trim();
   }
 
   getSearchTerm() {
